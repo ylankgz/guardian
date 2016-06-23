@@ -47,7 +47,7 @@ defmodule Guardian.Mixfile do
      {:ex_doc, "~> 0.10", only: :docs},
      {:earmark, ">= 0.0.0", only: :docs},
      {:credo, "~> 0.3", only: [:dev, :test]},
-     {:uuid, github: "okeuday/uuid", tag: :"v1.4.1"}]
+     {:uuid, github: "okeuday/uuid", tag: "v1.4.1"}]
   end
 
   defp package do
