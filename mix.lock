@@ -6,5 +6,5 @@
   "jose": {:hex, :jose, "1.7.0", "4a5a6b994f4582d315bf3902b88cbac10a01fc2c95bc142674a873228934ee6f", [:mix, :rebar], [{:base64url, "~> 0.0.1", [hex: :base64url, optional: false]}]},
   "plug": {:hex, :plug, "1.1.2", "7ed5cdc0245a56fcc9ad905c059dd2314cea9d043e6d0b8fd99b4845a3e220d5", [:mix], [{:cowboy, "~> 1.0", [hex: :cowboy, optional: true]}]},
   "poison": {:hex, :poison, "2.1.0", "f583218ced822675e484648fa26c933d621373f01c6c76bd00005d7bd4b82e27", [:mix], []},
-  "quickrand": {:hex, :quickrand, "1.5.2-rc1", "1345b1652dadc520692ee55f4d996d74d399a86c0265b53a24c8540803929cb4", [:rebar], []},
-  "uuid": {:hex, :uuid_erl, "1.5.2-rc1", "d4022ab3f4f1a28e86ea15d4075cb0c57ec908d8af1ca2e8af28aa815ef93c3a", [:rebar], [{:quickrand, "~> 1.5.2-rc1", [hex: :quickrand, optional: false]}]}}
+  "quickrand": {:hex, :quickrand, "1.4.0", "4524b14f251a18b011f3b978734ea19b216e92d4cef7b3761baa7015f8c12527", [:rebar], []},
+  "uuid": {:git, "https://github.com/okeuday/uuid.git", "41e4e0edc4fe6291227b3fe74f7c2362f2525b21", [tag: :"v1.4.1"]}}
