@@ -53,7 +53,8 @@ defmodule Guardian.Claims do
   def sub(claims, subject), do: Map.put(claims, "sub", subject)
 
   @doc false
-  def jti(claims), do: jti(claims, UUID.uuid4)
+  def jti(claims), do: jti(claims, :uuid.get_v4 |> uuid_to_string(:default))
+
   @doc false
   def jti(claims, id) when is_atom(id), do: sub(claims, to_string(id))
   @doc false
@@ -135,5 +136,58 @@ defmodule Guardian.Claims do
   end
 
   defp assign_exp_from_ttl(the_claims, _), do: the_claims
+
+
+  defp uuid_to_string(<<u0::32, u1::16, u2::16, u3::16, u4::48>>, :default) do
+    [binary_to_hex_list(<<u0::32>>), ?-, binary_to_hex_list(<<u1::16>>), ?-,
+     binary_to_hex_list(<<u2::16>>), ?-, binary_to_hex_list(<<u3::16>>), ?-,
+     binary_to_hex_list(<<u4::48>>)]
+      |> IO.iodata_to_binary
+  end
+
+  defp binary_to_hex_list(binary) do
+    :binary.bin_to_list(binary)
+      |> list_to_hex_str
+  end
+
+  # Hex string to hex character list.
+  defp hex_str_to_list([]) do
+    []
+  end
+
+  defp list_to_hex_str([]) do
+    []
+  end
+
+  defp list_to_hex_str([head | tail]) do
+    to_hex_str(head) ++ list_to_hex_str(tail)
+  end
+
+  # Hex character integer to hex string.
+  defp to_hex_str(n) when n < 256 do
+    [to_hex(div(n, 16)), to_hex(rem(n, 16))]
+  end
+
+  # Integer to hex character.
+  defp to_hex(i) when i < 10 do
+    0 + i + 48
+  end
+
+  defp to_hex(i) when i >= 10 and i < 16 do
+    ?a + (i - 10)
+  end
+
+  # Hex character to integer.
+  defp to_int(c) when ?0 <= c and c <= ?9 do
+    c - ?0
+  end
+
+  defp to_int(c) when ?A <= c and c <= ?F do
+    c - ?A + 10
+  end
+
+  defp to_int(c) when ?a <= c and c <= ?f do
+    c - ?a + 10
+  end
 
 end
